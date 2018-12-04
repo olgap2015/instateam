@@ -17,7 +17,7 @@ public class Role {
 
     @NotNull
     @Size(min = 3, max = 30)
-    @Pattern(regexp = "^[a-zA-Z0-9]*$")
+    @Pattern(regexp = "^[a-zA-Z0-9\\s]*$") // Pattern allows only alphanumeric characters and white space
     private String name;
 
     public Role() {

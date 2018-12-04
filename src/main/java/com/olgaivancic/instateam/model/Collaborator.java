@@ -14,7 +14,7 @@ public class Collaborator {
 
     @NotNull
     @Size(min = 4, max = 50)
-    @Pattern(regexp = "^[a-zA-Z0-9\\s'\\.-]*$")
+    @Pattern(regexp = "^[a-zA-Z0-9\\s'\\.-]*$") // Pattern allows only letters, white space, ".", "'" and "-"
     private String name;
 
     @NotNull
