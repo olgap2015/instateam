@@ -1,26 +1,27 @@
 package com.olgaivancic.instateam.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 @Entity
-public class Role {
+public class Collaborator {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotNull
-    @Size(min = 3, max = 30)
-    @Pattern(regexp = "^[a-zA-Z0-9]*$")
+    @Size(min = 4, max = 50)
+    @Pattern(regexp = "^[a-zA-Z0-9\\s'\\.-]*$")
     private String name;
 
-    public Role() {
+    @NotNull
+    @ManyToOne
+    private Role role;
+
+    public Collaborator() {
     }
 
     public Long getId() {
@@ -37,5 +38,13 @@ public class Role {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
     }
 }

@@ -5,19 +5,19 @@
 <hibernate-configuration>
     <session-factory>
         <!-- SQL dialect -->
-        <property roleName="dialect">org.hibernate.dialect.H2Dialect</property>
+        <property name="dialect">org.hibernate.dialect.H2Dialect</property>
 
         <!-- Disable the second-level cache  -->
-        <property roleName="cache.provider_class">org.hibernate.cache.internal.NoCacheProvider</property>
+        <property name="cache.provider_class">org.hibernate.cache.internal.NoCacheProvider</property>
 
         <!-- Echo all executed SQL to stdout -->
-        <property roleName="show_sql">true</property>
+        <property name="show_sql">true</property>
 
         <!-- Set naming strategy -->
-        <property roleName="hibernate.implicit_naming_strategy">org.hibernate.boot.model.naming.ImplicitNamingStrategyJpaCompliantImpl</property>
+        <property name="hibernate.implicit_naming_strategy">org.hibernate.boot.model.naming.ImplicitNamingStrategyJpaCompliantImpl</property>
 
         <!-- Update the database schema (structure) on startup -->
-        <property roleName="hbm2ddl.auto">update</property>
+        <property name="hbm2ddl.auto">update</property>
     </session-factory>
 
 </hibernate-configuration>
