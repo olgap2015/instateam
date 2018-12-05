@@ -15,17 +15,17 @@
                 <form>
                     <h2>Manage Roles</h2>
                     <div>
-                        <ul class="checkbox-list">
-                            <li><span class="primary">Developer</span></li>
-                            <li><span class="primary">Designer</span></li>
-                            <li><span class="primary">QA</span></li>
-                            <li><span class="primary">DevOps</span></li>
-                            <li><span class="primary">Copywriter</span></li>
+                        <ul th:each="role : ${roles}" class="checkbox-list">
+                            <li><span class="primary" th:text="${role.name}">Developer</span>
+                                <a class="button" th:href="@{|/roles/${role.id}/edit|}">Edit</a>
+                            </li>
                         </ul>
                     </div>
                     <div class="actions add-new-role">
-                        <input type="text" placeholder="New Role...">
-                        <a class="button" href="#">Add</a>
+                        <form th:action="@{/roles/new}" th:method="post">
+                            <input type="text" placeholder="New Role...">
+                            <button class="button" type="submit">Add</button>
+                        </form>
                     </div>
                 </form>
             </div>
