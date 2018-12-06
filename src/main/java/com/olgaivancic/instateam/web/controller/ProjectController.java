@@ -1,4 +1,4 @@
-package com.olgaivancic.instateam.controller;
+package com.olgaivancic.instateam.web.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
