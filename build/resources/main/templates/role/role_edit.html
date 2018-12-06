@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="layout :: head"></head>
     <body>
-    <header th:replace="layout :: header"></header>
+        <header th:replace="layout :: header"></header>
         <nav>
             <ul>
                 <li><a href="index.html">Projects</a></li>
@@ -12,18 +12,20 @@
         </nav>
         <section>
             <div class="container wrapper">
-                <form th:action="@{/roles/new}" method="post" th:object="${newRole}">
+                <form>
                     <h2>Manage Roles</h2>
                     <div>
                         <ul class="checkbox-list">
-                            <li th:each="role : ${roles}" ><span class="primary" th:text="${role.name}">Developer</span>
-                                <a class="button" th:href="@{|/roles/${role.id}/edit|}" style="float: right; margin: -12px -5px 10px 0;">Edit</a>
-                            </li>
+                            <li><span class="primary">Developer</span></li>
+                            <li><span class="primary">Designer</span></li>
+                            <li><span class="primary">QA</span></li>
+                            <li><span class="primary">DevOps</span></li>
+                            <li><span class="primary">Copywriter</span></li>
                         </ul>
                     </div>
                     <div class="actions add-new-role">
-                            <input type="text" th:field="*{name}" placeholder="New Role..."/>
-                            <button class="button" type="submit" style="width:60px;">Add</button>
+                        <input type="text" placeholder="New Role...">
+                        <a class="button" href="#">Add</a>
                     </div>
                 </form>
             </div>

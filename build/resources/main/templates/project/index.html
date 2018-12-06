@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout :: head"></head>
+    <body>
+    <header th:replace="layout :: header"></header>
+        <nav>
+            <ul>
+                <li class="selected"><a href="index.html">Projects</a></li>
+                <li><a href="collaborators.html">Collaborators</a></li>
+                <li><a th:href="@{/roles}">Roles</a></li>
+            </ul>
+        </nav>
+        <section>
+            <div class="container wrapper">
+                <div class="project-list">
+                    <div class="project">
+                        <h2><a href="project_detail.html">Website Project</a></h2>
+                        <p>Design and build a custom website</p>
+                        <span class="tag active">Active</span>
+                    </div>
+                    <div class="project">
+                        <h2><a href="#">App Project</a></h2>
+                        <p>Design and build a web app</p>
+                        <span class="tag active">Active</span>
+                    </div>
+                    <div class="project">
+                        <h2><a href="#">Poster Design</a></h2>
+                        <p>Create a poster design</p>
+                        <span class="tag archived">Archived</span>
+                    </div>
+                    <div class="project">
+                        <h2><a href="#">Mobile App</a></h2>
+                        <p>Design and build a mobile app</p>
+                        <span class="tag active">Active</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </body>
+</html>

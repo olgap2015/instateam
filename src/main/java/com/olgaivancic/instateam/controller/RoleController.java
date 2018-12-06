@@ -21,6 +21,7 @@ public class RoleController {
     public String listRoles(Model model) {
         List<Role> roles = roleService.findAll();
         model.addAttribute("roles", roles);
+        model.addAttribute("newRole", new Role());
         return "role/roles";
     }
 

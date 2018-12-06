@@ -30,7 +30,6 @@ public class Project {
     @ManyToMany
     private List<Role> rolesNeeded;
 
-    @NotNull
     @ManyToMany
     private List<Collaborator> collaborators;
 
