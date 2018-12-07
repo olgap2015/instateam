@@ -13,18 +13,26 @@
         </nav>
         <section>
             <div class="container wrapper">
-                <form th:action="@{/roles/new}" method="post" th:object="${newRole}">
+                <form th:action="@{/roles/new}" method="post" th:object="${role}">
                     <h2>Manage Roles</h2>
                     <div>
                         <ul class="checkbox-list">
-                            <li th:each="role : ${roles}" ><span class="primary" th:text="${role.name}">Developer</span>
-                                <a class="button" th:href="@{|/roles/${role.id}/edit|}" style="float: right; margin: -12px -5px 10px 0;">Edit</a>
+                            <li th:each="aRole : ${roles}" ><span class="primary" th:text="${aRole.name}">Developer</span>
+                                <a class="button" th:href="@{|/roles/${aRole.id}/edit|}" style="float: right; margin: -12px -5px 10px 0;">Edit</a>
                             </li>
                         </ul>
                     </div>
                     <div class="actions add-new-role">
+                        <!-- <div th:classappend="${#fields.hasErrors('name')}? 'error' : ''"> -->
+                        <!--<div style="float: left;"> -->
+                            <!-- <input type="text" th:field="*{name}" placeholder="New Role..." style="width: 100%;"/> -->
                             <input type="text" th:field="*{name}" placeholder="New Role..."/>
-                            <button class="button" type="submit" style="width:60px;">Add</button>
+                            <!-- <div class="error-message" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div> -->
+                            <!-- <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" style="float: left; padding-left: 10px;"></div> -->
+                        <!-- </div> -->
+                        <!-- <button class="button" type="submit" style="float: right; width:60px;">Add</button> -->
+                        <button class="button" type="submit" style="width:60px;">Add</button>
+                        <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" style="float: left; padding-left: 10px;"></div>
                     </div>
                 </form>
             </div>

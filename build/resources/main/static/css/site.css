@@ -358,6 +358,22 @@ form .add-new-collaborator .button {
 	float: left;
 	margin: 0;
 }
+/* Error messages styling */
+.error input {
+    border-width: 2px;
+    border-color: #ac4343;
+    border-bottom: none;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.error .error-message {
+    border: 2px solid #ac4343;
+    border-radius: 0 0 6px 6px;
+    background-color: #ac4343;
+    color: rgb(254,251,251);
+    padding: 10px;
+}
 
 
 /* ==========================================================================
