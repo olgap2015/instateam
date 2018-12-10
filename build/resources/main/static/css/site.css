@@ -263,16 +263,14 @@ strong {
 }
 
 .flash.success {
-    background-color: #7f9e40;
-    color: #f3f6ee;
+    background-color: #27b114;
+    color: #fefffe;
 }
 
 .flash.failure {
     background-color: #ac4343;
     color: #f2e2e2;
 }
-
-
 
 /* ==========================================================================
    Form Styles
@@ -358,8 +356,9 @@ form .add-new-collaborator .button {
 	float: left;
 	margin: 0;
 }
-/* Error messages styling */
-.error input {
+
+
+/*.error input {
     border-width: 2px;
     border-color: #ac4343;
     border-bottom: none;
@@ -372,7 +371,7 @@ form .add-new-collaborator .button {
     border-radius: 0 0 6px 6px;
     background-color: #ac4343;
     color: rgb(254,251,251);
-    padding: 10px;
+    padding: 10px;*/
 }
 
 
@@ -433,6 +432,28 @@ form .add-new-collaborator .button {
   border-top: 4px solid #FFF;
   border-left: 4px solid transparent;
   border-right: 4px solid transparent;
+}
+
+/*  =========================================================================
+    Error messages styling
+    =========================================================================  */
+
+.error input {
+    border-width: 2px;
+    border-color: red;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    margin-bottom: 0;
+}
+
+.error-message {
+    background-color: red;
+    color: rgb(254,251,251);
+    padding: 10px;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+    width: calc(100% - 93px);
+
 }
 
 

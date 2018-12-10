@@ -21,7 +21,7 @@ public class RoleController {
     @Autowired
     private RoleService roleService;
 
-    // Home page
+    // Roles view page
     @RequestMapping("/roles")
     public String listRoles(Model model) {
         List<Role> roles = roleService.findAll();
@@ -30,17 +30,6 @@ public class RoleController {
             model.addAttribute("role", new Role());
         }
         return "role/roles";
-    }
-
-    // Renders edit role page
-    @RequestMapping("/roles/{role.id}/edit")
-    public String editRole(@PathVariable Long roleId, Model model) {
-        // TODO: find the role to edit
-        Role role  = roleService.findById(roleId);
-        model.addAttribute("role", role);
-
-        // TODO: redesign roles_edit file
-        return "role/roles_edit";
     }
 
     // Post method to save new role
@@ -62,6 +51,40 @@ public class RoleController {
         // Redirect to the roles view page
         return "redirect:/roles";
     }
+
+    // Renders edit role page
+    @RequestMapping("/roles/{roleId}/edit")
+    public String editRole(@PathVariable Long roleId, Model model) {
+        // Find the role to edit
+        if (!model.containsAttribute("role")) {
+            Role role = roleService.findById(roleId);
+            model.addAttribute("role", role);
+        }
+
+        // TODO: redesign roles_edit file
+        return "role/role_edit";
+    }
+
+    // Post method to update a role
+    @RequestMapping(value = "/roles/{role.id}/update", method = RequestMethod.POST)
+    public String updateRole(@Valid Role role, BindingResult result, RedirectAttributes redirectAttributes) {
+        // Validate the incoming data
+        if (result.hasErrors()) {
+            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.role", result);
+            redirectAttributes.addFlashAttribute("role", role);
+            return String.format("redirect:/roles/%s/edit", role.getId());
+        }
+
+        // Update role
+        roleService.save(role);
+
+        // Add a flash message on redirect
+        redirectAttributes.addFlashAttribute("flash", new FlashMessage("Role successfully updated!", FlashMessage.Status.SUCCESS));
+
+        return "redirect:/roles";
+    }
+
+
 
 
 }
