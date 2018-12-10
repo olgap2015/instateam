@@ -66,7 +66,7 @@ public class RoleController {
     }
 
     // Post method to update a role
-    @RequestMapping(value = "/roles/{role.id}/update", method = RequestMethod.POST)
+    @RequestMapping(value = "/roles/{roleId}/update", method = RequestMethod.POST)
     public String updateRole(@Valid Role role, BindingResult result, RedirectAttributes redirectAttributes) {
         // Validate the incoming data
         if (result.hasErrors()) {

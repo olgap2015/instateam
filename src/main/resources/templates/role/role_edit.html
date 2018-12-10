@@ -1,15 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<!-- <head th:replace="layout :: head">
-</head> -->
-<head>
-    <meta charset="utf-8" />
-    <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <title>InstaTeam</title>
-    <link href="https://fonts.googleapis.com/css?family=Inconsolata:400,700" rel="stylesheet" type="text/css" />
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
-    <link rel="stylesheet" href="css/normalize.css" />
-    <link rel="stylesheet" href="css/site.css" />
+<head th:replace="layout :: head">
 </head>
     <body>
     <div th:replace="layout :: flash"></div>
@@ -28,9 +19,9 @@
                     <h2>Edit Role</h2>
                     <div>
                         <ul class="checkbox-list">
-                            <li><input type="text" th:field="*{name}" th:placeholder="*{name}"/>
-                                <button class="button" type="submit" style="float: right; margin: -12px -5px 10px 0;">Update</button>
-                                <a class="button" th:href="@{/roles}" style="float: right; margin: -12px -5px 10px 0;">Cancel</a>
+                            <li style="height: 120px;"><input type="text" th:field="*{name}" th:placeholder="*{name}"/>
+                                    <button class="button" type="submit">Update</button>
+                                    <a class="button" th:href="@{/roles}">Cancel</a>
                             </li>
                         </ul>
                     </div>
