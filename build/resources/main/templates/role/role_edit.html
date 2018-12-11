@@ -26,6 +26,9 @@
                         </ul>
                     </div>
                 </form>
+                <form th:action="@{|/roles/${role.id}/delete|}" method="post">
+                    <button class="button" type="submit" style="position: relative; left: 190px; bottom: 105px;">Delete</button>
+                </form>
             </div>
         </section>
     </body>

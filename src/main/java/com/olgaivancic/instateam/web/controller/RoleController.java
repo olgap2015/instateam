@@ -61,7 +61,6 @@ public class RoleController {
             model.addAttribute("role", role);
         }
 
-        // TODO: redesign roles_edit file
         return "role/role_edit";
     }
 
@@ -84,6 +83,14 @@ public class RoleController {
         return "redirect:/roles";
     }
 
+    // Post method to delete a role
+    @RequestMapping(value = "/roles/{roleId}/delete", method = RequestMethod.POST)
+    public String deleteRole(@PathVariable Long roleId, RedirectAttributes redirectAttributes) {
+        Role role = roleService.findById(roleId);
+        roleService.delete(role);
+        redirectAttributes.addFlashAttribute("flash", new FlashMessage("Role deleted!", FlashMessage.Status.SUCCESS));
+        return "redirect:/roles";
+    }
 
 
 
