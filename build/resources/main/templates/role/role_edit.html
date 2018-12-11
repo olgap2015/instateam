@@ -7,8 +7,8 @@
         <header th:replace="layout :: header"></header>
         <nav>
             <ul>
-                <li><a href="index.html">Projects</a></li>
-                <li><a href="collaborators.html">Collaborators</a></li>
+                <li><a th:href="@{/}">Projects</a></li>
+                <li><a th:href="@{/collaborators}">Collaborators</a></li>
                 <li class="selected"><a th:href="@{/roles}">Roles</a></li>
             </ul>
         </nav>
@@ -27,7 +27,7 @@
                     </div>
                 </form>
                 <form th:action="@{|/roles/${role.id}/delete|}" method="post">
-                    <button class="button" type="submit" style="position: relative; left: 190px; bottom: 105px;">Delete</button>
+                    <button class="button" type="submit" style="position: relative; left: 188px; bottom: 105px;">Delete</button>
                 </form>
             </div>
         </section>

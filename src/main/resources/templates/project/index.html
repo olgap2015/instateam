@@ -5,8 +5,8 @@
     <header th:replace="layout :: header"></header>
         <nav>
             <ul>
-                <li class="selected"><a href="index.html">Projects</a></li>
-                <li><a href="collaborators.html">Collaborators</a></li>
+                <li class="selected"><a th:href="@{/}">Projects</a></li>
+                <li><a th:href="@{/collaborators}">Collaborators</a></li>
                 <li><a th:href="@{/roles}">Roles</a></li>
             </ul>
         </nav>
