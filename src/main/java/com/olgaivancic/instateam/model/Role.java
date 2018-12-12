@@ -16,7 +16,7 @@ public class Role {
     private Long id;
 
     @NotNull
-    @Size(min = 3, max = 30, message = "Must be between 3 and 30 characters of length!")
+    @Size(min = 3, max = 30, message = "Name must be between 3 and 30 characters of length!")
     @Pattern(regexp = "^[a-zA-Z0-9\\s]*$", message = "Must only contain letters and numbers!") // Pattern allows only alphanumeric characters and white space
     private String name;
 
