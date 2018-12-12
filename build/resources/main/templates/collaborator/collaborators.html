@@ -16,44 +16,26 @@
                     <h2>Manage Collaborators</h2>
                     <ul class="checkbox-list">
                         <li th:each="collab : ${collaborators}">
-                            <span th:text="|${collab.name}   (Role: ${collab.role})|" class="primary">Michael Pemulius&nbsp;&nbsp;&nbsp;(Role:&nbsp;Designer)</span>
+                            <span th:text="|${collab.name}&nbsp;&nbsp;&nbsp;(Role:&nbsp;&nbsp;${collab.role})|" class="primary"></span>
                             <a class="button" th:href="@{|/collaborators/${collab.id}/edit|}" style="float: right; margin: -12px -5px 10px 0;">Edit</a>
                         </li>
-                        <!--<li>
-                            <span class="primary">Don Gately   -   Developer</span>
-                            <div class="custom-select">
-                                <span class="dropdown-arrow"></span>
-                                <select>
-                                    <option value="#">Designer</option>
-                                    <option value="#" selected>Developer</option>
-                                    <option value="#">QA</option>
-                                    <option value="#">DevOps</option>
-                                </select>
-                            </div>
-                        </li>
-                        <li>
-                            <span class="primary">Joelle Van Dyne   -   QA</span>
-                            <div class="custom-select">
-                                <span class="dropdown-arrow"></span>
-                                <select>
-                                    <option value="#">Designer</option>
-                                    <option value="#">Developer</option>
-                                    <option value="#" selected>QA</option>
-                                    <option value="#">DevOps</option>
-                                </select>
-                            </div>
-                        </li>-->
                     </ul>
                     <div class="actions add-new-collaborator">
-                        <input type="text" placeholder="Name..." th:field="*{name}" />
-                        <div class="custom-select">
-                            <span class="dropdown-arrow" style="bottom: 3px; position: relative; left: 345px; top: 75px;"></span>
-                            <select th:field="*{role}">
-                                <option th:selected="selected" value="Please select a role..." th:disabled="disabled" >Please select a role...</option>
-                                <option th:each="role : ${roles}" th:value="${role.name}" th:text="${role.name}">Designer</option>
-                            </select>
+                        <div th:classappend="${#fields.hasErrors('name')}? 'error' : ''">
+                            <input type="text" placeholder="Name..." th:field="*{name}" style="width: 50%;"/>
+                            <div class="error-message" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
                         </div>
-                        <a class="button" type="submit" style="width:60px;">Add</a>
+                        <div class="custom-select">
+                            <span class="dropdown-arrow" style="position: relative; right: 10px; top: 77px;"></span>
+                            <div th:classappend="${#fields.hasErrors('role')}? 'error' : ''">
+                                <select th:field="*{role.id}" style="width: 55%;">
+                                    <option value="" disabled="disabled">Select a role</option>
+                                    <option th:each="aRole : ${roles}" th:value="${aRole.id}" th:text="${aRole.name}">Designer</option>
+                                </select>
+                                <div class="error-message" th:if="${#fields.hasErrors('role')}" th:errors="*{role}"></div>
+                            </div>
+                        </div>
+                        <button class="button" type="submit" style="width:60px; margin-bottom: 10px;">Add</button>
                     </div>
                 </form>
             </div>
