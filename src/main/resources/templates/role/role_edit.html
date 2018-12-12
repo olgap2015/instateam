@@ -19,15 +19,16 @@
                     <h2>Edit Role</h2>
                     <div>
                         <ul class="checkbox-list">
-                            <li style="height: 120px;"><input type="text" th:field="*{name}" th:placeholder="*{name}"/>
-                                    <button class="button" type="submit">Update</button>
+                            <li style="height: 120px;"><input type="text" th:field="*{name}" th:placeholder="*{name}" th:styleappend="${#fields.hasErrors('name')} ? 'border-color: red; border-top-left-radius: 4px; border-top-right-radius: 4px; margin-bottom: 0; border-bottom-left-radius: 0; border-bottom-right-radius: 0;' : ''"/>
+                                <div class="error-message" th:if="${#fields.hasErrors('name')}" th:errors="*{name}" style="float: left; padding-left: 13px; margin-bottom: 10px; width: 605px;"></div>
+                                <button class="button" type="submit">Update</button>
                                     <a class="button" th:href="@{/roles}">Cancel</a>
                             </li>
                         </ul>
                     </div>
                 </form>
-                <form th:action="@{|/roles/${role.id}/delete|}" method="post">
-                    <button class="button" type="submit" style="position: relative; left: 188px; bottom: 105px;">Delete</button>
+                <form th:action="@{|/roles/${role.id}/delete|}" method="post" style="position: relative;height: 40px;">
+                    <button class="button" type="submit" style="position: absolute;top: 15px;right: 25px;">Delete</button>
                 </form>
             </div>
         </section>
