@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -54,6 +55,39 @@ public class CollaboratorController {
 
         // Flash message that the save was a success
         redirectAttributes.addFlashAttribute("flash", new FlashMessage("Collaborator is successfully saved!", FlashMessage.Status.SUCCESS));
+
+        return "redirect:/collaborators";
+    }
+
+    // Renders edit collaborator page
+    @RequestMapping("/collaborators/{collaboratorId}/edit")
+    public String editCollaborator(@PathVariable Long collaboratorId, Model model) {
+        // Find the role to edit
+        if (!model.containsAttribute("collaborator")) {
+            Collaborator collaborator = collaboratorService.findById(collaboratorId);
+            model.addAttribute("collaborator", collaborator);
+        }
+        List<Role> roles = roleService.findAll();
+        model.addAttribute("roles", roles);
+
+        return "collaborator/collaborator_edit";
+    }
+
+    // Post method to update a collaborator
+    @RequestMapping(value = "/collaborators/{collaboratorId}/update", method = RequestMethod.POST)
+    public String updateCollaborator(@Valid Collaborator collaborator, BindingResult result, RedirectAttributes redirectAttributes) {
+        // Validate the incoming data
+        if (result.hasErrors()) {
+            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.collaborator", result);
+            redirectAttributes.addFlashAttribute("collaborator", collaborator);
+            return String.format("redirect:/collaborators/%s/edit", collaborator.getId());
+        }
+
+        // Update role
+        collaboratorService.save(collaborator);
+
+        // Add a flash message on redirect
+        redirectAttributes.addFlashAttribute("flash", new FlashMessage("Collaborator successfully updated!", FlashMessage.Status.SUCCESS));
 
         return "redirect:/collaborators";
     }
