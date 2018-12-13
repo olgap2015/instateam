@@ -13,7 +13,7 @@ public class Collaborator {
     private Long id;
 
     @NotNull
-    @Size(min = 2, max = 50, message = "Name must be between 2 and 50 characters of length!")
+    @Size(min = 3, max = 50, message = "Name must be between 3 and 50 characters of length!")
     @Pattern(regexp = "^[a-zA-Z0-9\\s'\\.-]*$", message = "Only letters, \".\"  \"''\" and \"-\" are allowed!") // Pattern allows only letters, white space, ".", "'" and "-"
     private String name;
 

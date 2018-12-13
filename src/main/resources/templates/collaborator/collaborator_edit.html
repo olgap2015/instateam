@@ -30,7 +30,11 @@
                     </div>
                 </div>
                 <button class="button" type="submit" style="width:80px; margin-top: 10px;">Update</button>
+                <a class="button" th:href="@{/collaborators}" style="width: 50px; margin: 10px;">Cancel</a>
             </div>
+        </form>
+        <form th:action="@{|/collaborators/${collaborator.id}/delete|}" method="post" style="position: relative;height: 40px;">
+            <button class="button" type="submit" style="position: absolute;top: 15px;right: 25px;">Delete</button>
         </form>
     </div>
 </section>
