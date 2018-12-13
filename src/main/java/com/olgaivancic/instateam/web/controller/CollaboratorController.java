@@ -92,4 +92,13 @@ public class CollaboratorController {
         return "redirect:/collaborators";
     }
 
+    // Post method to delete a collaborator
+    @RequestMapping(value = "/collaborators/{collaboratorId}/delete", method = RequestMethod.POST)
+    public String deleteCollaborator(@PathVariable Long collaboratorId, RedirectAttributes redirectAttributes) {
+        Collaborator collaborator = collaboratorService.findById(collaboratorId);
+        collaboratorService.delete(collaborator);
+        redirectAttributes.addFlashAttribute("flash", new FlashMessage("Collaborator is successfully deleted!", FlashMessage.Status.SUCCESS));
+        return "redirect:/collaborators";
+    }
+
 }
