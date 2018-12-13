@@ -13,11 +13,11 @@ public class Project {
     private Long id;
 
     @NotNull
-    @Size(min = 2, max = 50)
+    @Size(min = 2, max = 50, message = "Name must be between 2 and 50 characters of length!")
     @Pattern(regexp = "^[a-zA-Z0-9\\s]*$") // Pattern allows only alphanumeric characters and white space
     private String name;
 
-    @NotNull
+    @NotNull(message = "This field can't be empty!")
     @Size(max = 300)
     private String description;
 
@@ -26,7 +26,7 @@ public class Project {
     @Pattern(regexp = "^[a-zA-Z0-9\\s]*$") // Pattern allows only alphanumeric characters and white space
     private String status;
 
-    @NotNull
+    @NotNull(message = "At least one role must be assigned to the project!")
     @ManyToMany
     private List<Role> rolesNeeded;
 
