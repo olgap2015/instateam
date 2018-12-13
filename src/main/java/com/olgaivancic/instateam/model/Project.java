@@ -83,4 +83,5 @@ public class Project {
     public void setCollaborators(List<Collaborator> collaborators) {
         this.collaborators = collaborators;
     }
+
 }
