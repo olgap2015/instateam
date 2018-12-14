@@ -1,6 +1,8 @@
 package com.olgaivancic.instateam.web.controller;
 
+import com.olgaivancic.instateam.model.Collaborator;
 import com.olgaivancic.instateam.model.Project;
+import com.olgaivancic.instateam.model.Role;
 import com.olgaivancic.instateam.service.ProjectService;
 import com.olgaivancic.instateam.service.RoleService;
 import com.olgaivancic.instateam.web.FlashMessage;
@@ -15,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
+import java.util.Map;
+import java.util.TreeMap;
 
 @Controller
 public class ProjectController {
@@ -31,6 +35,25 @@ public class ProjectController {
         model.addAttribute("projectStatusEnum", ProjectStatus.values());
         model.addAttribute("projects", projectService.findAll());
         return "project/index";
+    }
+
+    // Renders project details page
+    @RequestMapping("/projects/{projectId}")
+    public String projectDetails(@PathVariable Long projectId, Model model) {
+        Project project = projectService.findById(projectId);
+        model.addAttribute("project", project);
+        // Create a map of rolesNeeded to Collaborators of the project
+        Map<String,String> mapOfRolesToCollaborators = new TreeMap<>();
+        for (Role role : project.getRolesNeeded()) {
+            for (Collaborator collaborator : project.getCollaborators()) {
+                if (role.equals(collaborator.getRole())) {
+                    mapOfRolesToCollaborators.put(role.getName(), collaborator.getName());
+                    // If there is no collaborator assigned to a particular role yet, map a role to the String "Unassigned"
+                } else mapOfRolesToCollaborators.put(role.getName(), "[Unassigned]");
+            }
+        }
+        model.addAttribute("mapOfRolesToCollaborators", mapOfRolesToCollaborators);
+        return "project/project_detail";
     }
 
     // Renders a page to add new project
@@ -85,5 +108,12 @@ public class ProjectController {
         redirectAttributes.addFlashAttribute("flash", new FlashMessage("Projects is successfully updated!", FlashMessage.Status.SUCCESS));
 
         return "redirect:/";
+    }
+
+    @RequestMapping("/projects/{projectId}/edit-collaborators")
+    public String editProjectCollaborators(@PathVariable Long projectId, Model model) {
+        // TODO: Implement this method
+
+        return "project/project_collaborators";
     }
 }
