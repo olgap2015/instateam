@@ -2,6 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="layout :: head"></head>
     <body>
+    <div th:replace="layout :: flash"></div>
     <header th:replace="layout :: header"></header>
         <nav>
             <ul>
@@ -13,25 +14,14 @@
         <section>
             <div class="container wrapper">
                 <div class="project-list">
-                    <div class="project">
-                        <h2><a href="project_detail.html">Website Project</a></h2>
-                        <p>Design and build a custom website</p>
-                        <span class="tag active">Active</span>
-                    </div>
-                    <div class="project">
-                        <h2><a href="#">App Project</a></h2>
-                        <p>Design and build a web app</p>
-                        <span class="tag active">Active</span>
-                    </div>
-                    <div class="project">
-                        <h2><a href="#">Poster Design</a></h2>
-                        <p>Create a poster design</p>
-                        <span class="tag archived">Archived</span>
-                    </div>
-                    <div class="project">
-                        <h2><a href="#">Mobile App</a></h2>
-                        <p>Design and build a mobile app</p>
-                        <span class="tag active">Active</span>
+                    <div class="project" th:each="project : ${projects}">
+                        <h2><a th:href="@{|/projects/${project.id}|}" th:text="${project.name}">Website Project</a></h2>
+                        <p th:text="${project.description}">Design and build a custom website</p>
+                        <div>
+                            <span class="tag" th:if="${project.status}=='Active'" th:style="|background-color: ${active};|" th:text="${project.status}">Active</span>
+                            <span class="tag" th:if="${project.status}=='Archived'" th:style="|background-color: ${archived};|" th:text="${project.status}">Active</span>
+                            <span class="tag" th:if="${project.status}=='Not Started'" th:style="|background-color: ${notstarted};|" th:text="${project.status}">Active</span>
+                        </div>
                     </div>
                 </div>
             </div>

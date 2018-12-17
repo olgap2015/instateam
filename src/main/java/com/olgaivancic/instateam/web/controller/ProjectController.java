@@ -32,8 +32,10 @@ public class ProjectController {
     // Home page - index of all of the projects
     @RequestMapping("/")
     public String listProjects(Model model) {
-        model.addAttribute("projectStatusEnum", ProjectStatus.values());
         model.addAttribute("projects", projectService.findAll());
+        model.addAttribute("active", ProjectStatus.ACTIVE.getHexCode());
+        model.addAttribute("archived", ProjectStatus.ARCHIVED.getHexCode());
+        model.addAttribute("notstarted", ProjectStatus.NOTSTARTED.getHexCode());
         return "project/index";
     }
 
@@ -45,14 +47,19 @@ public class ProjectController {
         // Create a map of rolesNeeded to Collaborators of the project
         Map<String,String> mapOfRolesToCollaborators = new TreeMap<>();
         for (Role role : project.getRolesNeeded()) {
-            for (Collaborator collaborator : project.getCollaborators()) {
-                if (role.equals(collaborator.getRole())) {
-                    mapOfRolesToCollaborators.put(role.getName(), collaborator.getName());
-                    // If there is no collaborator assigned to a particular role yet, map a role to the String "Unassigned"
-                } else mapOfRolesToCollaborators.put(role.getName(), "[Unassigned]");
+            if (project.getCollaborators().size() == 0) {
+                mapOfRolesToCollaborators.put(role.getName(), "[Unassigned]");
+            } else {
+                for (Collaborator collaborator : project.getCollaborators()) {
+                    if (role.equals(collaborator.getRole())) {
+                        mapOfRolesToCollaborators.put(role.getName(), collaborator.getName());
+                        // If there is no collaborator assigned to a particular role yet, map the role to the String "Unassigned"
+                    } else mapOfRolesToCollaborators.put(role.getName(), "[Unassigned]");
+                }
             }
         }
         model.addAttribute("mapOfRolesToCollaborators", mapOfRolesToCollaborators);
+        System.out.println(mapOfRolesToCollaborators);
         return "project/project_detail";
     }
 

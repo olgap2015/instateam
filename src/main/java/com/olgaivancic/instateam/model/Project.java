@@ -4,6 +4,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -28,10 +29,10 @@ public class Project {
 
     @NotNull(message = "At least one role must be assigned to the project!")
     @ManyToMany
-    private List<Role> rolesNeeded;
+    private List<Role> rolesNeeded = new ArrayList<>();
 
     @ManyToMany
-    private List<Collaborator> collaborators;
+    private List<Collaborator> collaborators = new ArrayList<>();
 
     public Project() {
     }

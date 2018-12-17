@@ -2,6 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="layout :: head"></head>
     <body>
+    <div th:replace="layout :: flash"></div>
     <header th:replace="layout :: header"></header>
         <nav>
             <ul>
@@ -14,32 +15,20 @@
             <div class="container wrapper">
                 <div class="project-list single">
                     <div class="project">
-                        <h2>Website Project</h2>
-                        <p>Design and build a custom website</p>
-                        <span class="tag active">Active</span>
+                        <h2 th:text="${project.name}">Website Project</h2>
+                        <p th:text="${project.description}">Design and build a custom website</p>
+                        <span class="tag active" th:text="${project.status}">Active</span>
                     </div>
                     <div class="roles-collaborators">
                         <h3>Roles &amp; Collaborators</h3>
-                        <div class="list-item">
-                            <span class="primary">Developer</span>
-                            <span class="secondary">Michael Pemulis</span>
-                        </div>
-                        <div class="list-item">
-                            <span class="primary">Designer</span>
-                            <span class="secondary">Don Gately</span>
-                        </div>
-                        <div class="list-item">
-                            <span class="primary">QA</span>
-                                <span class="secondary">Joelle Van Dyne</span>
-                            </div>
-                        <div class="list-item">
-                            <span class="primary">DevOps</span>
-                            <span class="secondary">[Unassigned]</span>
+                        <div class="list-item" th:each="entry : ${mapOfRolesToCollaborators}">
+                            <span class="primary" th:text="${entry.key}">Developer</span>
+                            <span class="secondary" th:text="${entry.value}">Michael Pemulis</span>
                         </div>
                     </div>
                     <div class="actions">
-                        <a class="button" href="edit_project.html">Edit Project</a>
-                        <a class="button" href="project_collaborators.html">Edit Collaborators</a>
+                        <a class="button" th:href="@{|/projects/${project.id}/edit|}">Edit Project</a>
+                        <a class="button" th:href="@{|/projects/${project.id}/edit-collaborators|}">Edit Collaborators</a>
                     </div>
                 </div>
             </div>
