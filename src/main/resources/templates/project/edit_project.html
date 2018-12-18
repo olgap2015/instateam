@@ -40,7 +40,7 @@
                         <label for="project_roles" th:styleappend="${#fields.hasErrors('rolesNeeded')} ? 'padding-left: 13px;' : ''">Project Roles:</label>
                         <ul class="checkbox-list" th:styleappend="${#fields.hasErrors('rolesNeeded')} ? 'border-color: red; border-top-left-radius: 4px; border-top-right-radius: 4px; margin-bottom: 0; border-bottom-left-radius: 0; border-bottom-right-radius: 0;' : ''">
                             <li th:each="role : ${roles}">
-                                <input type="checkbox" th:field="*{rolesNeeded}" name="project_roles" th:value="${role.id}" th:checked="${rolesNeeded} ? 'checked'" />
+                                <input type="checkbox" th:field="*{rolesNeeded}" name="project_roles" th:value="${role.id}" th:checked="${projectRoles != null} ? ${#lists.contains(projectRoles, role.id)} : ''" />
                                 <span class="primary" th:text="${role.name}">Developer</span>
                             </li>
                         </ul>

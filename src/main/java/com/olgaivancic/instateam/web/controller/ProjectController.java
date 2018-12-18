@@ -74,6 +74,7 @@ public class ProjectController {
         }
         model.addAttribute("roles", roleService.findAll());
         model.addAttribute("statuses", ProjectStatus.values());
+//        model.addAttribute("projectRoles", project.getRolesNeeded());
         model.addAttribute("action", "new");
         model.addAttribute("submit", "Add");
         return "project/edit_project";
@@ -103,7 +104,7 @@ public class ProjectController {
         model.addAttribute("roles", roleService.findAll());
         model.addAttribute("projectRoles", project.getRolesNeeded());
         model.addAttribute("statuses", ProjectStatus.values());
-        model.addAttribute("action", "update");
+        model.addAttribute("action", String.format("%s/update", project.getId()));
         model.addAttribute("submit", "Update");
         return "project/edit_project";
     }
