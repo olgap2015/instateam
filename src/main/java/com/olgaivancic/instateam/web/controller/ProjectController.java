@@ -47,6 +47,7 @@ public class ProjectController {
         // Create a map of rolesNeeded to Collaborators of the project
         Map<String,String> mapOfRolesToCollaborators = new TreeMap<>();
         for (Role role : project.getRolesNeeded()) {
+            // If there are no collaborators assigned to the roles yet, map each role to the String "Unassigned"
             if (project.getCollaborators().size() == 0) {
                 mapOfRolesToCollaborators.put(role.getName(), "[Unassigned]");
             } else {
@@ -59,7 +60,9 @@ public class ProjectController {
             }
         }
         model.addAttribute("mapOfRolesToCollaborators", mapOfRolesToCollaborators);
-        System.out.println(mapOfRolesToCollaborators);
+        model.addAttribute("active", ProjectStatus.ACTIVE.getHexCode());
+        model.addAttribute("archived", ProjectStatus.ARCHIVED.getHexCode());
+        model.addAttribute("notstarted", ProjectStatus.NOTSTARTED.getHexCode());
         return "project/project_detail";
     }
 
@@ -85,7 +88,7 @@ public class ProjectController {
             return "redirect:/projects/new";
         }
         projectService.save(project);
-        redirectAttributes.addFlashAttribute("flash", new FlashMessage("Projects is successfully saved!", FlashMessage.Status.SUCCESS));
+        redirectAttributes.addFlashAttribute("flash", new FlashMessage("Project is successfully saved!", FlashMessage.Status.SUCCESS));
 
         return "redirect:/";
     }
@@ -93,17 +96,19 @@ public class ProjectController {
     // Renders a page to edit a project
     @RequestMapping(value = "projects/{projectId}/edit", method = RequestMethod.GET)
     public String editProject(@PathVariable Long projectId, Model model) {
+        Project project = projectService.findById(projectId);
         if (!model.containsAttribute("project")) {
-            model.addAttribute("project", projectService.findById(projectId));
+            model.addAttribute("project", project);
         }
         model.addAttribute("roles", roleService.findAll());
+        model.addAttribute("projectRoles", project.getRolesNeeded());
         model.addAttribute("statuses", ProjectStatus.values());
         model.addAttribute("action", "update");
         model.addAttribute("submit", "Update");
         return "project/edit_project";
     }
 
-    // Post method to save a new project
+    // Post method to update a project
     @RequestMapping(value = "projects/{projectId}/update", method = RequestMethod.POST)
     public String updateProject(@Valid Project project, BindingResult result, RedirectAttributes redirectAttributes) {
         if (result.hasErrors()) {

@@ -1,7 +1,7 @@
 package com.olgaivancic.instateam.web;
 
 public enum ProjectStatus {
-    NOTSTARTED("Not Started", "#ffff00"),
+    NOTSTARTED("Not Started", "#dede2a"),
     ACTIVE("Active", "#72c38d"),
     ARCHIVED("Archived", "#bbbab9");
 

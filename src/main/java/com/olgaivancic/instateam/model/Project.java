@@ -1,5 +1,7 @@
 package com.olgaivancic.instateam.model;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
@@ -18,8 +20,8 @@ public class Project {
     @Pattern(regexp = "^[a-zA-Z0-9\\s]*$") // Pattern allows only alphanumeric characters and white space
     private String name;
 
-    @NotNull(message = "This field can't be empty!")
-    @Size(max = 300)
+    @NotNull
+    @Size(min = 3, max = 300, message = "Description must be 3 to 300 characters of length!")
     private String description;
 
     @NotNull
@@ -27,7 +29,8 @@ public class Project {
     @Pattern(regexp = "^[a-zA-Z0-9\\s]*$") // Pattern allows only alphanumeric characters and white space
     private String status;
 
-    @NotNull(message = "At least one role must be assigned to the project!")
+    @NotNull
+    @Size(min = 1, message = "At least one role must be assigned to the project!")
     @ManyToMany
     private List<Role> rolesNeeded = new ArrayList<>();
 
