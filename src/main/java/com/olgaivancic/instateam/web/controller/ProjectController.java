@@ -3,6 +3,7 @@ package com.olgaivancic.instateam.web.controller;
 import com.olgaivancic.instateam.model.Collaborator;
 import com.olgaivancic.instateam.model.Project;
 import com.olgaivancic.instateam.model.Role;
+import com.olgaivancic.instateam.service.CollaboratorService;
 import com.olgaivancic.instateam.service.ProjectService;
 import com.olgaivancic.instateam.service.RoleService;
 import com.olgaivancic.instateam.web.FlashMessage;
@@ -17,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -28,6 +31,9 @@ public class ProjectController {
 
     @Autowired
     private RoleService roleService;
+
+    @Autowired
+    private CollaboratorService collaboratorService;
 
     // Home page - index of all of the projects
     @RequestMapping("/")
@@ -74,7 +80,6 @@ public class ProjectController {
         }
         model.addAttribute("roles", roleService.findAll());
         model.addAttribute("statuses", ProjectStatus.values());
-//        model.addAttribute("projectRoles", project.getRolesNeeded());
         model.addAttribute("action", "new");
         model.addAttribute("submit", "Add");
         return "project/edit_project";
@@ -120,13 +125,50 @@ public class ProjectController {
         projectService.save(project);
         redirectAttributes.addFlashAttribute("flash", new FlashMessage("Projects is successfully updated!", FlashMessage.Status.SUCCESS));
 
-        return "redirect:/";
+        return String.format("redirect:/projects/%s", project.getId());
     }
 
+    // Renders a page to edit project collaborators
     @RequestMapping("/projects/{projectId}/edit-collaborators")
     public String editProjectCollaborators(@PathVariable Long projectId, Model model) {
-        // TODO: Implement this method
-
+        // TODO: does the current collaborator is a selected option when the page is rendered?
+        Project project = projectService.findById(projectId);
+        model.addAttribute("project", project);
+        List<Collaborator> allCollaborators = collaboratorService.findAll();
+        Map<String, List<Collaborator>> mapOfRolesNeededToCollaboratorsWithThatRole = new TreeMap<>();
+        // Map of roles needed for the project to List of all the collaborators who have this role
+        for (Role role : project.getRolesNeeded()) {
+            List<Collaborator> collaboratorsWithTheSameRole = new ArrayList<>();
+            for (Collaborator collaborator : allCollaborators) {
+                if (role.equals(collaborator.getRole())) {
+                    collaboratorsWithTheSameRole.add(collaborator);
+                }
+            }
+            // TODO: Need to figure out the output if there are no collaborators with this role available. Maybe add a fake Collaborator with a name "No collaborators available to coose from"
+//            if (collaboratorsWithTheSameRole.size() == 0) {
+            mapOfRolesNeededToCollaboratorsWithThatRole.put(role.getName(), collaboratorsWithTheSameRole);
+        }
+        model.addAttribute("mapOfRolesNeededToCollaboratorsWithThatRole", mapOfRolesNeededToCollaboratorsWithThatRole);
         return "project/project_collaborators";
     }
+
+    // Post method to save changes to project collaborators
+    @RequestMapping(value = "/projects/{projectId}/update-collaborators", method = RequestMethod.POST)
+    public String updateProjectCollaborators (@Valid Project project, BindingResult result, RedirectAttributes redirectAttributes) {
+        if (result.hasErrors()) {
+            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.project", result);
+            redirectAttributes.addFlashAttribute("project", project);
+            return String.format("redirect:/projects/%s/edit-collaborators", project.getId());
+        }
+        projectService.save(project);
+        redirectAttributes.addFlashAttribute("flash", new FlashMessage("Project collaborators are successfully updated!", FlashMessage.Status.SUCCESS));
+
+        return String.format("redirect:/projects/%s", project.getId());
+    }
+
+
+
+
+
+
 }

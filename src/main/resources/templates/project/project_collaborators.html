@@ -13,49 +13,28 @@
         </nav>
         <section>
             <div class="container wrapper">
-                <form>
-                    <label>Edit Collaborators: Website Project</label>
+                <form th:action="@{|/projects/${project.id}/update-collaborators|}" method="post" th:object="${project}">
+                    <input type="hidden" th:field="*{id}"/>
+                    <input type="hidden" th:field="*{name}"/>
+                    <input type="hidden" th:field="*{description}"/>
+                    <input type="hidden" th:field="*{status}"/>
+                    <input type="hidden" th:field="*{rolesNeeded}"/>
+                    <label th:text="|Edit Collaborators: ${project.name}|">Edit Collaborators: Website Project</label>
                     <ul class="checkbox-list">
-                        <li><span class="primary">Developer</span>
-                            <div class="custom-select">
+                        <li th:each="entry : ${mapOfRolesNeededToCollaboratorsWithThatRole}"><span class="primary" th:text="${entry.key}">Developer</span>
+                            <div th:if="${#lists.size(entry.value) > 0}" class="custom-select" style="position: relative;">
                                 <span class="dropdown-arrow"></span>
-                                <select>
-                                    <option value="#">Michael Pemulis</option>
-                                    <option value="#">Name</option>
+                                <select th:field="*{collaborators}">
+                                    <option value="" disabled="disabled">Choose...</option>
+                                    <option th:each="collaborator : ${entry.value}" th:value="${collaborator.id}" th:text="${collaborator.name}">Michael Pemulis</option>
                                 </select>
                             </div>
-                        </li>
-                        <li><span class="primary">Designer</span>
-                            <div class="custom-select">
-                                <span class="dropdown-arrow"></span>
-                                <select>
-                                    <option value="#">Don Gately</option>
-                                    <option value="#">Name</option>
-                                </select>
-                            </div>
-                        </li>
-                        <li><span class="primary">QA</span>
-                            <div class="custom-select">
-                                <span class="dropdown-arrow"></span>
-                                <select>
-                                    <option value="#">Joelle Van Dyne</option>
-                                    <option value="#">Name</option>
-                                </select>
-                            </div>
-                        </li>
-                        <li><span class="primary">DevOps</span>
-                            <div class="custom-select">
-                                <span class="dropdown-arrow"></span>
-                                <select>
-                                    <option value="#">Choose...</option>
-                                    <option value="#">Name</option>
-                                </select>
-                            </div>
+                            <p th:if="${#lists.size(entry.value) == 0}" style="float: right;">[No collaborators available for this role]</p>
                         </li>
                     </ul>
                     <div class="actions">
-                        <input type="submit" value="Save" class="button">
-                        <a href="#" class="button button-secondary">Cancel</a>
+                        <button type="submit" class="button">Save</button>
+                        <a th:href="@{|/projects/${project.id}|}" class="button button-secondary">Cancel</a>
                     </div>
                 </form>
             </div>
