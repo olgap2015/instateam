@@ -1,6 +1,7 @@
 package com.olgaivancic.instateam.web.controller;
 
 import com.olgaivancic.instateam.model.Collaborator;
+import com.olgaivancic.instateam.model.CollaboratorListWrapper;
 import com.olgaivancic.instateam.model.Project;
 import com.olgaivancic.instateam.model.Role;
 import com.olgaivancic.instateam.service.CollaboratorService;
@@ -49,22 +50,35 @@ public class ProjectController {
     @RequestMapping("/projects/{projectId}")
     public String projectDetails(@PathVariable Long projectId, Model model) {
         Project project = projectService.findById(projectId);
+        System.out.println(project);
         model.addAttribute("project", project);
         // Create a map of rolesNeeded to Collaborators of the project
         Map<String,String> mapOfRolesToCollaborators = new TreeMap<>();
+//        for (Role role : project.getRolesNeeded()) {
+//            // If there are no collaborators assigned to the roles yet, map each role to the String "Unassigned"
+//            if (project.getCollaborators().isEmpty() || project.getCollaborators() == null) {
+//                mapOfRolesToCollaborators.put(role.getName(), "[Unassigned]");
+//            } else {
+//                for (Collaborator collaborator : project.getCollaborators()) {
+//                    if (role.equals(collaborator.getRole())) {
+//                        mapOfRolesToCollaborators.put(role.getName(), collaborator.getName());
+//                        // If there is no collaborator assigned to a particular role yet, map the role to the String "Unassigned"
+//                    } // else mapOfRolesToCollaborators.put(role.getName(), "[Unassigned]");
+//                }
+//
+//            }
+//        }
+        for (Collaborator collaborator : project.getCollaborators()) {
+            mapOfRolesToCollaborators.put(collaborator.getRole().getName(), collaborator.getName());
+        }
+        // Each role that hasn't been assigned yet, add to the map with the value of "Unassigned"
         for (Role role : project.getRolesNeeded()) {
-            // If there are no collaborators assigned to the roles yet, map each role to the String "Unassigned"
-            if (project.getCollaborators().size() == 0) {
+            if (!mapOfRolesToCollaborators.containsKey(role.toString())) {
                 mapOfRolesToCollaborators.put(role.getName(), "[Unassigned]");
-            } else {
-                for (Collaborator collaborator : project.getCollaborators()) {
-                    if (role.equals(collaborator.getRole())) {
-                        mapOfRolesToCollaborators.put(role.getName(), collaborator.getName());
-                        // If there is no collaborator assigned to a particular role yet, map the role to the String "Unassigned"
-                    } else mapOfRolesToCollaborators.put(role.getName(), "[Unassigned]");
-                }
             }
         }
+
+
         model.addAttribute("mapOfRolesToCollaborators", mapOfRolesToCollaborators);
         model.addAttribute("active", ProjectStatus.ACTIVE.getHexCode());
         model.addAttribute("archived", ProjectStatus.ARCHIVED.getHexCode());
@@ -133,7 +147,28 @@ public class ProjectController {
     public String editProjectCollaborators(@PathVariable Long projectId, Model model) {
         // TODO: does the current collaborator is a selected option when the page is rendered?
         Project project = projectService.findById(projectId);
-        model.addAttribute("project", project);
+        if (!model.containsAttribute("project")) {
+            model.addAttribute("project", project);
+        }
+//        model.addAttribute("projectRoles", project.getRolesNeeded());
+//        CollaboratorListWrapper listOfProjectCollaborators = new CollaboratorListWrapper();
+//        if (project.getCollaborators().isEmpty()) {
+//            for (int i = 1; i <= project.getRolesNeeded().size(); i++) {
+//                listOfProjectCollaborators.addCollaborator(new Collaborator());
+//            }
+//        } else {
+//            for (Role role : project.getRolesNeeded()) {
+//                for (Collaborator collaborator : project.getCollaborators()) {
+//                    if (role.equals(collaborator.getRole())) {
+//                        listOfProjectCollaborators.addCollaborator(collaborator);
+//                    }
+//                }
+//            }
+//        }
+
+
+
+
         List<Collaborator> allCollaborators = collaboratorService.findAll();
         Map<String, List<Collaborator>> mapOfRolesNeededToCollaboratorsWithThatRole = new TreeMap<>();
         // Map of roles needed for the project to List of all the collaborators who have this role
@@ -144,8 +179,6 @@ public class ProjectController {
                     collaboratorsWithTheSameRole.add(collaborator);
                 }
             }
-            // TODO: Need to figure out the output if there are no collaborators with this role available. Maybe add a fake Collaborator with a name "No collaborators available to coose from"
-//            if (collaboratorsWithTheSameRole.size() == 0) {
             mapOfRolesNeededToCollaboratorsWithThatRole.put(role.getName(), collaboratorsWithTheSameRole);
         }
         model.addAttribute("mapOfRolesNeededToCollaboratorsWithThatRole", mapOfRolesNeededToCollaboratorsWithThatRole);
@@ -156,11 +189,14 @@ public class ProjectController {
     @RequestMapping(value = "/projects/{projectId}/update-collaborators", method = RequestMethod.POST)
     public String updateProjectCollaborators (@Valid Project project, BindingResult result, RedirectAttributes redirectAttributes) {
         if (result.hasErrors()) {
+            System.out.println(project);
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.project", result);
             redirectAttributes.addFlashAttribute("project", project);
+            redirectAttributes.addFlashAttribute("flash", new FlashMessage("Form contains invalid data and couldn't be processed!", FlashMessage.Status.FAILURE));
             return String.format("redirect:/projects/%s/edit-collaborators", project.getId());
         }
         projectService.save(project);
+        System.out.println(project);
         redirectAttributes.addFlashAttribute("flash", new FlashMessage("Project collaborators are successfully updated!", FlashMessage.Status.SUCCESS));
 
         return String.format("redirect:/projects/%s", project.getId());

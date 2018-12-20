@@ -14,11 +14,13 @@
         <section>
             <div class="container wrapper">
                 <form th:action="@{|/projects/${project.id}/update-collaborators|}" method="post" th:object="${project}">
-                    <input type="hidden" th:field="*{id}"/>
-                    <input type="hidden" th:field="*{name}"/>
-                    <input type="hidden" th:field="*{description}"/>
-                    <input type="hidden" th:field="*{status}"/>
-                    <input type="hidden" th:field="*{rolesNeeded}"/>
+                    <!--<input type="hidden" th:field="*{id}"/>-->
+                    <!--<input type="hidden" th:field="*{name}"/>-->
+                    <!--<input type="hidden" th:field="*{description}"/>-->
+                    <!--<input type="hidden" th:field="*{status}"/>-->
+                    <!--<div th:each="role, i: ${projectRoles}">-->
+                        <!--<input type="hidden" th:field="*{rolesNeeded[__${i.index}__]}"/>-->
+                    <!--</div>-->
                     <label th:text="|Edit Collaborators: ${project.name}|">Edit Collaborators: Website Project</label>
                     <ul class="checkbox-list">
                         <li th:each="entry : ${mapOfRolesNeededToCollaboratorsWithThatRole}"><span class="primary" th:text="${entry.key}">Developer</span>
@@ -29,7 +31,7 @@
                                     <option th:each="collaborator : ${entry.value}" th:value="${collaborator.id}" th:text="${collaborator.name}">Michael Pemulis</option>
                                 </select>
                             </div>
-                            <p th:if="${#lists.size(entry.value) == 0}">[No collaborators available with this role]</p>
+                            <p th:if="${#lists.size(entry.value) == 0}" style="float: right;">[No collaborators available for this role]</p>
                         </li>
                     </ul>
                     <div class="actions">

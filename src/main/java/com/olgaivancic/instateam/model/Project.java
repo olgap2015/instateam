@@ -88,4 +88,15 @@ public class Project {
         this.collaborators = collaborators;
     }
 
+    @Override
+    public String toString() {
+        return "Project{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", status='" + status + '\'' +
+                ", rolesNeeded=" + rolesNeeded +
+                ", collaborators=" + collaborators +
+                '}';
+    }
 }
