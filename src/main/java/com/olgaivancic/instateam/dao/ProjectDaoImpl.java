@@ -30,6 +30,7 @@ public class ProjectDaoImpl extends AbstractDao<Project> implements ProjectDao {
         Project project = session.get(Project.class, id);
         Hibernate.initialize(project.getCollaborators());
         Hibernate.initialize(project.getRolesNeeded());
+        session.close();
         return project;
     }
 }

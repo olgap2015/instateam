@@ -33,6 +33,9 @@
                         <a class="button" th:href="@{|/projects/${project.id}/edit-collaborators|}">Edit Collaborators</a>
                     </div>
                 </div>
+                <form th:action="@{|/projects/${project.id}/delete|}" method="post" style="position: relative; padding: 0; height: 0;">
+                    <button class="button" type="submit" style="position: absolute;top: -69px;right: 25px;">Delete</button>
+                </form>
             </div>
         </section>
     </body>

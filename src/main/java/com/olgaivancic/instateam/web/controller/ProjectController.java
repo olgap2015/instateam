@@ -61,8 +61,6 @@ public class ProjectController {
                 mapOfRolesToCollaborators.put(role.getName(), "[Unassigned]");
             }
         }
-
-
         model.addAttribute("mapOfRolesToCollaborators", mapOfRolesToCollaborators);
         model.addAttribute("active", ProjectStatus.ACTIVE.getHexCode());
         model.addAttribute("archived", ProjectStatus.ARCHIVED.getHexCode());
@@ -166,6 +164,28 @@ public class ProjectController {
         redirectAttributes.addFlashAttribute("flash", new FlashMessage("Project collaborators are successfully updated!", FlashMessage.Status.SUCCESS));
 
         return String.format("redirect:/projects/%s", project.getId());
+    }
+
+    // Post method to delete a project
+    @RequestMapping(value = "/projects/{projectId}/delete", method = RequestMethod.POST)
+    public String deleteProject(@PathVariable Long projectId, RedirectAttributes redirectAttributes) {
+        Project project = projectService.findById(projectId);
+        // Check to see whether project has collaborators assigned if yes, delete all the collaborators
+        List<Collaborator> collaborators = project.getCollaborators();
+        if (project.getCollaborators().size() > 0) {
+            for (int i = collaborators.size() - 1; i >= 0; i--   ) {
+                collaborators.remove(i);
+            }
+        }
+        // Delete all the rolesNeeded
+        List<Role> rolesNeeded = project.getRolesNeeded();
+        for (int i = rolesNeeded.size() - 1; i >= 0; i--   ) {
+            rolesNeeded.remove(i);
+        }
+        projectService.save(project);
+        projectService.delete(project);
+        redirectAttributes.addFlashAttribute("flash", new FlashMessage("Project deleted!", FlashMessage.Status.SUCCESS));
+        return "redirect:/";
     }
 
 

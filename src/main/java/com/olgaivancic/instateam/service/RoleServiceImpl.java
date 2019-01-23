@@ -1,5 +1,7 @@
 package com.olgaivancic.instateam.service;
 
+import com.olgaivancic.instateam.dao.CollaboratorDao;
+import com.olgaivancic.instateam.dao.ProjectDao;
 import com.olgaivancic.instateam.dao.RoleDao;
 import com.olgaivancic.instateam.model.Role;
 import org.springframework.beans.factory.annotation.Autowired;

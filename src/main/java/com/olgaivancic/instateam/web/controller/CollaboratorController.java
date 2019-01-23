@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Controller
 public class CollaboratorController {
@@ -28,7 +30,7 @@ public class CollaboratorController {
     // Renders the list of collaborators and a form to add a new one as well as a button for editing
     @RequestMapping("/collaborators")
     public String listCollaborators(Model model) {
-        // TODO: Fetch and add the list of collaborators to the model
+        // Fetch and add the list of collaborators to the model
         List<Collaborator> collaborators = collaboratorService.findAll();
         model.addAttribute("collaborators", collaborators);
         List<Role> roles = roleService.findAll();
@@ -42,7 +44,7 @@ public class CollaboratorController {
     // Post method to save a new collaborator
     @RequestMapping(value = "/collaborators/new", method = RequestMethod.POST)
     public String addCollaborator(@Valid Collaborator collaborator, BindingResult result, RedirectAttributes redirectAttributes) {
-        // TODO: Add data validation
+        // Add data validation
         if (result.hasErrors()) {
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.collaborator", result);
             redirectAttributes.addFlashAttribute("collaborator", collaborator);
@@ -96,6 +98,9 @@ public class CollaboratorController {
     @RequestMapping(value = "/collaborators/{collaboratorId}/delete", method = RequestMethod.POST)
     public String deleteCollaborator(@PathVariable Long collaboratorId, RedirectAttributes redirectAttributes) {
         Collaborator collaborator = collaboratorService.findById(collaboratorId);
+        // Check to see if the collaborator is involved in the project already
+        Set<Collaborator> allCollaboratorsInvolvedInProjects = new HashSet<>();
+        if ()
         collaboratorService.delete(collaborator);
         redirectAttributes.addFlashAttribute("flash", new FlashMessage("Collaborator is successfully deleted!", FlashMessage.Status.SUCCESS));
         return "redirect:/collaborators";
