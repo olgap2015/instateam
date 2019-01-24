@@ -3,7 +3,6 @@ package com.olgaivancic.instateam.web.controller;
 import com.olgaivancic.instateam.model.Collaborator;
 import com.olgaivancic.instateam.model.Role;
 import com.olgaivancic.instateam.service.CollaboratorService;
-import com.olgaivancic.instateam.service.ProjectService;
 import com.olgaivancic.instateam.service.RoleService;
 import com.olgaivancic.instateam.web.FlashMessage;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
+import java.util.Comparator;
 import java.util.List;
 
 @Controller
@@ -31,6 +31,7 @@ public class CollaboratorController {
     public String listCollaborators(Model model) {
         // Fetch and add the list of collaborators to the model
         List<Collaborator> collaborators = collaboratorService.findAll();
+        collaborators.sort(Comparator.comparing(Collaborator::getName));
         model.addAttribute("collaborators", collaborators);
         List<Role> roles = roleService.findAll();
         model.addAttribute("roles", roles);

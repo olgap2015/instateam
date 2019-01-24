@@ -17,7 +17,7 @@
                     <h2>Manage Collaborators</h2>
                     <ul class="checkbox-list">
                         <li th:each="collab : ${collaborators}">
-                            <span th:text="|${collab.name}&nbsp;&nbsp;&nbsp;(Role:&nbsp;&nbsp;${collab.role})|" class="primary"></span>
+                            <span th:text="|${collab.name}&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;${collab.role}|" class="primary"></span>
                             <a class="button" th:href="@{|/collaborators/${collab.id}/edit|}" style="float: right; margin: -12px -5px 10px 0;">Edit</a>
                         </li>
                     </ul>

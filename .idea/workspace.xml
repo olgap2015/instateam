@@ -5,6 +5,7 @@
       <change beforePath="$PROJECT_DIR$/data/instateam.mv.db" beforeDir="false" afterPath="$PROJECT_DIR$/data/instateam.mv.db" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/olgaivancic/instateam/web/controller/CollaboratorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/olgaivancic/instateam/web/controller/CollaboratorController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/olgaivancic/instateam/web/controller/RoleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/olgaivancic/instateam/web/controller/RoleController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/collaborator/collaborators.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/collaborator/collaborators.html" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -99,8 +100,8 @@
           <entry key="CLASS" value="1" />
           <entry key="CSS" value="6" />
           <entry key="Groovy" value="6" />
-          <entry key="HTML" value="61" />
-          <entry key="JAVA" value="226" />
+          <entry key="HTML" value="62" />
+          <entry key="JAVA" value="228" />
           <entry key="PLAIN_TEXT" value="9" />
           <entry key="Properties" value="14" />
           <entry key="RNG Compact" value="2" />
@@ -121,8 +122,8 @@
         <counts>
           <entry key="CSS" value="285" />
           <entry key="Groovy" value="15" />
-          <entry key="HTML" value="5788" />
-          <entry key="JAVA" value="12616" />
+          <entry key="HTML" value="5789" />
+          <entry key="JAVA" value="12678" />
           <entry key="PLAIN_TEXT" value="13" />
           <entry key="Properties" value="92" />
         </counts>
@@ -144,21 +145,26 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/olgaivancic/instateam/dao/ProjectDaoImpl.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/olgaivancic/instateam/web/controller/CollaboratorController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="459">
-              <caret line="24" column="59" selection-start-line="24" selection-start-column="59" selection-end-line="24" selection-end-column="59" />
+            <state relative-caret-position="324">
+              <caret line="33" column="69" selection-start-line="33" selection-start-column="69" selection-end-line="33" selection-end-column="69" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/olgaivancic/instateam/web/controller/CollaboratorController.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/olgaivancic/instateam/model/Project.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1592">
-              <caret line="21" column="37" lean-forward="true" selection-start-line="21" selection-start-column="37" selection-end-line="21" selection-end-column="37" />
+            <state relative-caret-position="784">
+              <caret line="104" column="37" selection-start-line="104" selection-start-column="37" selection-end-line="104" selection-end-column="37" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#3212#3213#0" expanded="true" />
+                <element signature="e#3306#3307#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -167,8 +173,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/olgaivancic/instateam/web/controller/RoleController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1053">
-              <caret line="122" column="24" selection-start-line="122" selection-start-column="24" selection-end-line="122" selection-end-column="24" />
+            <state relative-caret-position="121">
+              <caret line="122" column="13" lean-forward="true" selection-start-line="122" selection-start-column="13" selection-end-line="122" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -178,6 +184,24 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="243">
               <caret line="16" selection-start-line="16" selection-end-line="16" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/collaborator/collaborators.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="232">
+              <caret line="19" column="83" selection-start-line="19" selection-start-column="83" selection-end-line="19" selection-end-column="83" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/olgaivancic/instateam/web/ProjectStatus.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="54">
+              <caret line="2" column="12" selection-start-line="2" selection-start-column="12" selection-end-line="2" selection-end-column="12" />
             </state>
           </provider>
         </entry>
@@ -675,7 +699,6 @@
         <option value="$PROJECT_DIR$/src/main/java/com/olgaivancic/instateam/web/controller/ProjectController.java" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/project/edit_project.html" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/project/project_detail.html" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/collaborator/collaborators.html" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/collaborator/collaborator_edit.html" />
         <option value="$PROJECT_DIR$/src/main/java/com/olgaivancic/instateam/dao/ProjectDaoImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/olgaivancic/instateam/model/Collaborator.java" />
@@ -683,6 +706,7 @@
         <option value="$PROJECT_DIR$/src/main/java/com/olgaivancic/instateam/service/CollaboratorServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/olgaivancic/instateam/web/controller/CollaboratorController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/olgaivancic/instateam/web/controller/RoleController.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/collaborator/collaborators.html" />
       </list>
     </option>
   </component>
@@ -847,7 +871,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1548335703370" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1548336919331" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../giflib-hibernate-brushoff" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
@@ -947,7 +971,7 @@
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.43150684" weight="0.19763695" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.43150684" visible="true" weight="0.19763695" />
       <window_info id="Structure" order="1" sideWeight="0.5684931" side_tool="true" weight="0.1652452" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -956,7 +980,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32936078" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4989339" weight="0.5440357" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4989339" weight="0.4871795" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.72240806" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -1014,13 +1038,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/project/project_collaborators.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="704">
-          <caret line="32" column="34" selection-start-line="32" selection-start-column="34" selection-end-line="32" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/olgaivancic/instateam/converter/StringToCollaboratorConverter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="242">
@@ -1236,13 +1253,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/collaborator/collaborators.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="124">
-          <caret line="20" column="151" selection-start-line="20" selection-start-column="151" selection-end-line="20" selection-end-column="151" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_171/src.zip!/java/util/AbstractCollection.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="745">
@@ -1275,18 +1285,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="459">
           <caret line="24" column="59" selection-start-line="24" selection-start-column="59" selection-end-line="24" selection-end-column="59" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/olgaivancic/instateam/model/Project.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1944">
-          <caret line="104" column="37" selection-start-line="104" selection-start-column="37" selection-end-line="104" selection-end-column="37" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#3212#3213#0" expanded="true" />
-            <element signature="e#3306#3307#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1328,16 +1326,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/olgaivancic/instateam/web/controller/ProjectController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="595">
-          <caret line="177" column="13" lean-forward="true" selection-start-line="175" selection-start-column="12" selection-end-line="177" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/olgaivancic/instateam/model/Role.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="280">
@@ -1357,8 +1345,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/olgaivancic/instateam/web/controller/CollaboratorController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1592">
-          <caret line="21" column="37" lean-forward="true" selection-start-line="21" selection-start-column="37" selection-end-line="21" selection-end-column="37" />
+        <state relative-caret-position="324">
+          <caret line="33" column="69" selection-start-line="33" selection-start-column="69" selection-end-line="33" selection-end-column="69" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1372,10 +1360,46 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/collaborator/collaborators.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="232">
+          <caret line="19" column="83" selection-start-line="19" selection-start-column="83" selection-end-line="19" selection-end-column="83" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/olgaivancic/instateam/web/ProjectStatus.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="2" column="12" selection-start-line="2" selection-start-column="12" selection-end-line="2" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/olgaivancic/instateam/web/controller/ProjectController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="595">
+          <caret line="177" column="13" lean-forward="true" selection-start-line="175" selection-start-column="12" selection-end-line="177" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/olgaivancic/instateam/model/Project.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="784">
+          <caret line="104" column="37" selection-start-line="104" selection-start-column="37" selection-end-line="104" selection-end-column="37" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#3212#3213#0" expanded="true" />
+            <element signature="e#3306#3307#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/olgaivancic/instateam/web/controller/RoleController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1053">
-          <caret line="122" column="24" selection-start-line="122" selection-start-column="24" selection-end-line="122" selection-end-column="24" />
+        <state relative-caret-position="121">
+          <caret line="122" column="13" lean-forward="true" selection-start-line="122" selection-start-column="13" selection-end-line="122" selection-end-column="13" />
         </state>
       </provider>
     </entry>

@@ -112,10 +112,12 @@ public class RoleController {
         if (projects.size() > 0) {
             for (Project project : projects) {
                 List<Role> rolesNeeded = project.getRolesNeeded();
-                for (int i = rolesNeeded.size() - 1; i >= 0; i--) {
-                    if (rolesNeeded.get(i).equals(role)) {
-                        rolesNeeded.remove(i);
-                        projectService.save(project);
+                if (rolesNeeded.size() > 0) {
+                    for (int i = rolesNeeded.size() - 1; i >= 0; i--) {
+                        if (rolesNeeded.get(i).equals(role)) {
+                            rolesNeeded.remove(i);
+                            projectService.save(project);
+                        }
                     }
                 }
             }
