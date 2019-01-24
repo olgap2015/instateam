@@ -103,38 +103,8 @@ public class CollaboratorController {
     // Post method to delete a collaborator
     @RequestMapping(value = "/collaborators/{collaboratorId}/delete", method = RequestMethod.POST)
     public String deleteCollaborator(@PathVariable Long collaboratorId, RedirectAttributes redirectAttributes) {
-        Collaborator aCollaborator = collaboratorService.findById(collaboratorId);
-        // Make a set of collaborators that are involved in projects
-        Set<Collaborator> allCollaboratorsInvolvedInProjects = new HashSet<>();
-        List<Project> projects = projectService.findAll();
-        for (Project project : projects) {
-            if (project.getCollaborators().size() > 0) {
-                allCollaboratorsInvolvedInProjects.addAll(project.getCollaborators());
-            }
-        }
-        // If the collaborator is involved in at least one project
-        if (allCollaboratorsInvolvedInProjects.contains(aCollaborator)) {
-            // Make a list of such projects
-            List<Project> projectsThatInvolveThisCollaborator = projects.stream()
-                    .filter(project -> project.getCollaborators().contains(aCollaborator))
-                    .collect(Collectors.toList());
-            // Delete the collaborator from the list of collaborators for each of those projects
-            if (projectsThatInvolveThisCollaborator.size() > 0) {
-                for (Project project : projectsThatInvolveThisCollaborator) {
-                    List<Collaborator> collaborators = project.getCollaborators();
-                    if (collaborators.size() > 0) {
-                            for (int i = collaborators.size() - 1; i >= 0; i--) {
-                                Collaborator col = collaborators.get(i);
-                                if (col.equals(aCollaborator)) {
-                                collaborators.remove(col);
-                                projectService.save(project);
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        collaboratorService.delete(aCollaborator);
+        Collaborator collaborator = collaboratorService.findById(collaboratorId);
+        collaboratorService.delete(collaborator);
         redirectAttributes.addFlashAttribute("flash", new FlashMessage("Collaborator is successfully deleted!", FlashMessage.Status.SUCCESS));
         return "redirect:/collaborators";
     }

@@ -1,6 +1,8 @@
 package com.olgaivancic.instateam.web.controller;
 
+import com.olgaivancic.instateam.model.Collaborator;
 import com.olgaivancic.instateam.model.Role;
+import com.olgaivancic.instateam.service.CollaboratorService;
 import com.olgaivancic.instateam.service.RoleService;
 import com.olgaivancic.instateam.web.FlashMessage;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +22,9 @@ public class RoleController {
 
     @Autowired
     private RoleService roleService;
+
+    @Autowired
+    private CollaboratorService collaboratorService;
 
     // Roles view page
     @RequestMapping("/roles")
@@ -87,6 +92,9 @@ public class RoleController {
     @RequestMapping(value = "/roles/{roleId}/delete", method = RequestMethod.POST)
     public String deleteRole(@PathVariable Long roleId, RedirectAttributes redirectAttributes) {
         Role role = roleService.findById(roleId);
+        // Check if the role is assigned to at least one collaborator
+        List<Collaborator> collaborators = collaboratorService.findAll();
+
         roleService.delete(role);
         redirectAttributes.addFlashAttribute("flash", new FlashMessage("Role deleted!", FlashMessage.Status.SUCCESS));
         return "redirect:/roles";
