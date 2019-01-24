@@ -1,8 +1,10 @@
 package com.olgaivancic.instateam.web.controller;
 
 import com.olgaivancic.instateam.model.Collaborator;
+import com.olgaivancic.instateam.model.Project;
 import com.olgaivancic.instateam.model.Role;
 import com.olgaivancic.instateam.service.CollaboratorService;
+import com.olgaivancic.instateam.service.ProjectService;
 import com.olgaivancic.instateam.service.RoleService;
 import com.olgaivancic.instateam.web.FlashMessage;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,9 +20,13 @@ import javax.validation.Valid;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Controller
 public class CollaboratorController {
+    @Autowired
+    private ProjectService projectService;
+
     @Autowired
     private CollaboratorService collaboratorService;
 
@@ -97,11 +103,38 @@ public class CollaboratorController {
     // Post method to delete a collaborator
     @RequestMapping(value = "/collaborators/{collaboratorId}/delete", method = RequestMethod.POST)
     public String deleteCollaborator(@PathVariable Long collaboratorId, RedirectAttributes redirectAttributes) {
-        Collaborator collaborator = collaboratorService.findById(collaboratorId);
-        // Check to see if the collaborator is involved in the project already
+        Collaborator aCollaborator = collaboratorService.findById(collaboratorId);
+        // Make a set of collaborators that are involved in projects
         Set<Collaborator> allCollaboratorsInvolvedInProjects = new HashSet<>();
-        if ()
-        collaboratorService.delete(collaborator);
+        List<Project> projects = projectService.findAll();
+        for (Project project : projects) {
+            if (project.getCollaborators().size() > 0) {
+                allCollaboratorsInvolvedInProjects.addAll(project.getCollaborators());
+            }
+        }
+        // If the collaborator is involved in at least one project
+        if (allCollaboratorsInvolvedInProjects.contains(aCollaborator)) {
+            // Make a list of such projects
+            List<Project> projectsThatInvolveThisCollaborator = projects.stream()
+                    .filter(project -> project.getCollaborators().contains(aCollaborator))
+                    .collect(Collectors.toList());
+            // Delete the collaborator from the list of collaborators for each of those projects
+            if (projectsThatInvolveThisCollaborator.size() > 0) {
+                for (Project project : projectsThatInvolveThisCollaborator) {
+                    List<Collaborator> collaborators = project.getCollaborators();
+                    if (collaborators.size() > 0) {
+                            for (int i = collaborators.size() - 1; i >= 0; i--) {
+                                Collaborator col = collaborators.get(i);
+                                if (col.equals(aCollaborator)) {
+                                collaborators.remove(col);
+                                projectService.save(project);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        collaboratorService.delete(aCollaborator);
         redirectAttributes.addFlashAttribute("flash", new FlashMessage("Collaborator is successfully deleted!", FlashMessage.Status.SUCCESS));
         return "redirect:/collaborators";
     }

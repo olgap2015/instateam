@@ -20,6 +20,10 @@ public class ProjectDaoImpl extends AbstractDao<Project> implements ProjectDao {
     public List<Project> findAll() {
         Session session = sessionFactory.openSession();
         List<Project> projects = session.createCriteria(Project.class).list();
+        for (Project project : projects) {
+            Hibernate.initialize(project.getCollaborators());
+            Hibernate.initialize(project.getRolesNeeded());
+        }
         session.close();
         return projects;
     }
