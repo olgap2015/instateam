@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d5d00140-01e5-4033-83ab-6507c5f1150c" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/olgaivancic/instateam/service/CollaboratorServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/olgaivancic/instateam/service/CollaboratorServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/instateam.mv.db" beforeDir="false" afterPath="$PROJECT_DIR$/data/instateam.mv.db" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/olgaivancic/instateam/web/controller/CollaboratorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/olgaivancic/instateam/web/controller/CollaboratorController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/olgaivancic/instateam/web/controller/RoleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/olgaivancic/instateam/web/controller/RoleController.java" afterDir="false" />
     </list>
@@ -100,7 +100,7 @@
           <entry key="CSS" value="6" />
           <entry key="Groovy" value="6" />
           <entry key="HTML" value="61" />
-          <entry key="JAVA" value="225" />
+          <entry key="JAVA" value="226" />
           <entry key="PLAIN_TEXT" value="9" />
           <entry key="Properties" value="14" />
           <entry key="RNG Compact" value="2" />
@@ -122,7 +122,7 @@
           <entry key="CSS" value="285" />
           <entry key="Groovy" value="15" />
           <entry key="HTML" value="5788" />
-          <entry key="JAVA" value="11974" />
+          <entry key="JAVA" value="12616" />
           <entry key="PLAIN_TEXT" value="13" />
           <entry key="Properties" value="92" />
         </counts>
@@ -152,20 +152,32 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/olgaivancic/instateam/web/controller/CollaboratorController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="496">
-              <caret line="106" column="49" lean-forward="true" selection-start-line="106" selection-start-column="49" selection-end-line="106" selection-end-column="49" />
+            <state relative-caret-position="-1592">
+              <caret line="21" column="37" lean-forward="true" selection-start-line="21" selection-start-column="37" selection-end-line="21" selection-end-column="37" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/olgaivancic/instateam/web/controller/RoleController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1053">
+              <caret line="122" column="24" selection-start-line="122" selection-start-column="24" selection-end-line="122" selection-end-column="24" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/olgaivancic/instateam/web/controller/RoleController.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/olgaivancic/instateam/service/RoleServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="567">
-              <caret line="96" selection-start-line="96" selection-end-line="96" />
+            <state relative-caret-position="243">
+              <caret line="16" selection-start-line="16" selection-end-line="16" />
             </state>
           </provider>
         </entry>
@@ -173,7 +185,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/olgaivancic/instateam/service/CollaboratorServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="891">
+            <state relative-caret-position="216">
               <caret line="39" column="51" selection-start-line="39" selection-start-column="51" selection-end-line="39" selection-end-column="51" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -668,9 +680,9 @@
         <option value="$PROJECT_DIR$/src/main/java/com/olgaivancic/instateam/dao/ProjectDaoImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/olgaivancic/instateam/model/Collaborator.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/olgaivancic/instateam/model/Project.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/olgaivancic/instateam/web/controller/RoleController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/olgaivancic/instateam/service/CollaboratorServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/olgaivancic/instateam/web/controller/CollaboratorController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/olgaivancic/instateam/web/controller/RoleController.java" />
       </list>
     </option>
   </component>
@@ -835,7 +847,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1548333221105" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1548335703370" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../giflib-hibernate-brushoff" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
@@ -934,7 +946,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.43150684" weight="0.19763695" />
       <window_info id="Structure" order="1" sideWeight="0.5684931" side_tool="true" weight="0.1652452" />
@@ -950,7 +961,7 @@
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32936078" />
-      <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.49946696" weight="0.5273133" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="7" sideWeight="0.49946696" visible="true" weight="0.5273133" />
       <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.50053304" side_tool="true" weight="0.32936078" />
       <window_info anchor="bottom" id="Version Control" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Build" order="10" weight="0.19546743" />
@@ -1197,13 +1208,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/olgaivancic/instateam/service/RoleServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="243">
-          <caret line="16" selection-start-line="16" selection-end-line="16" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/templates/project/project_detail.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="251">
@@ -1341,16 +1345,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/olgaivancic/instateam/web/controller/RoleController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="567">
-          <caret line="96" selection-start-line="96" selection-end-line="96" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/olgaivancic/instateam/service/CollaboratorServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="891">
+        <state relative-caret-position="216">
           <caret line="39" column="51" selection-start-line="39" selection-start-column="51" selection-end-line="39" selection-end-column="51" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -1360,8 +1357,25 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/olgaivancic/instateam/web/controller/CollaboratorController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="496">
-          <caret line="106" column="49" lean-forward="true" selection-start-line="106" selection-start-column="49" selection-end-line="106" selection-end-column="49" />
+        <state relative-caret-position="-1592">
+          <caret line="21" column="37" lean-forward="true" selection-start-line="21" selection-start-column="37" selection-end-line="21" selection-end-column="37" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/olgaivancic/instateam/service/RoleServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="243">
+          <caret line="16" selection-start-line="16" selection-end-line="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/olgaivancic/instateam/web/controller/RoleController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1053">
+          <caret line="122" column="24" selection-start-line="122" selection-start-column="24" selection-end-line="122" selection-end-column="24" />
         </state>
       </provider>
     </entry>

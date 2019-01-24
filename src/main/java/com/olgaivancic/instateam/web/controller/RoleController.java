@@ -1,8 +1,10 @@
 package com.olgaivancic.instateam.web.controller;
 
 import com.olgaivancic.instateam.model.Collaborator;
+import com.olgaivancic.instateam.model.Project;
 import com.olgaivancic.instateam.model.Role;
 import com.olgaivancic.instateam.service.CollaboratorService;
+import com.olgaivancic.instateam.service.ProjectService;
 import com.olgaivancic.instateam.service.RoleService;
 import com.olgaivancic.instateam.web.FlashMessage;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +27,9 @@ public class RoleController {
 
     @Autowired
     private CollaboratorService collaboratorService;
+
+    @Autowired
+    private ProjectService projectService;
 
     // Roles view page
     @RequestMapping("/roles")
@@ -92,9 +97,29 @@ public class RoleController {
     @RequestMapping(value = "/roles/{roleId}/delete", method = RequestMethod.POST)
     public String deleteRole(@PathVariable Long roleId, RedirectAttributes redirectAttributes) {
         Role role = roleService.findById(roleId);
-        // Check if the role is assigned to at least one collaborator
+        // Delete all the collaborators with that role
         List<Collaborator> collaborators = collaboratorService.findAll();
-
+        if (collaborators.size() > 0) {
+            for (int i = collaborators.size() - 1; i >= 0; i--) {
+                Collaborator col = collaborators.get(i);
+                if (col.getRole().equals(role)) {
+                    collaboratorService.delete(col);
+                }
+            }
+        }
+        // Delete that role from the rolesNeeded list from each project where the role occurs
+        List<Project> projects = projectService.findAll();
+        if (projects.size() > 0) {
+            for (Project project : projects) {
+                List<Role> rolesNeeded = project.getRolesNeeded();
+                for (int i = rolesNeeded.size() - 1; i >= 0; i--) {
+                    if (rolesNeeded.get(i).equals(role)) {
+                        rolesNeeded.remove(i);
+                        projectService.save(project);
+                    }
+                }
+            }
+        }
         roleService.delete(role);
         redirectAttributes.addFlashAttribute("flash", new FlashMessage("Role deleted!", FlashMessage.Status.SUCCESS));
         return "redirect:/roles";

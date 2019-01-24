@@ -1,7 +1,6 @@
 package com.olgaivancic.instateam.web.controller;
 
 import com.olgaivancic.instateam.model.Collaborator;
-import com.olgaivancic.instateam.model.Project;
 import com.olgaivancic.instateam.model.Role;
 import com.olgaivancic.instateam.service.CollaboratorService;
 import com.olgaivancic.instateam.service.ProjectService;
@@ -17,16 +16,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 @Controller
 public class CollaboratorController {
-    @Autowired
-    private ProjectService projectService;
-
     @Autowired
     private CollaboratorService collaboratorService;
 
