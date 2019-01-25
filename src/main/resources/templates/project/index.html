@@ -16,6 +16,7 @@
                 <div class="project-list">
                     <div class="project" th:each="project : ${projects}">
                         <h2><a th:href="@{|/projects/${project.id}|}" th:text="${project.name}">Website Project</a></h2>
+                        <p th:text="|Start Date: ${#dates.format(project.startDate, 'dd MMM yyyy')}|">Start Date: 22 Jan 2018</p>
                         <p th:text="${project.description}">Design and build a custom website</p>
                         <div>
                             <span class="tag" th:if="${project.status}=='Active'" th:style="|background-color: ${active};|" th:text="${project.status}">Active</span>

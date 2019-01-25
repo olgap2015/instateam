@@ -18,10 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.*;
 
 @Controller
 public class ProjectController {
@@ -71,9 +68,12 @@ public class ProjectController {
     // Renders a page to add new project
     @RequestMapping(value = "projects/new", method = RequestMethod.GET)
     public String addProject(Model model) {
+        Project project = new Project();
         if (!model.containsAttribute("project")) {
-            model.addAttribute("project", new Project());
+            project.setStartDate(new Date());
+            model.addAttribute("project", project);
         }
+
         model.addAttribute("roles", roleService.findAll());
         model.addAttribute("statuses", ProjectStatus.values());
         model.addAttribute("action", "new");

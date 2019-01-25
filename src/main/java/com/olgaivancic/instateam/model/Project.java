@@ -1,12 +1,14 @@
 package com.olgaivancic.instateam.model;
 
 import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
@@ -20,6 +22,11 @@ public class Project {
     @Size(min = 2, max = 50, message = "Name must be between 2 and 50 characters of length!")
     @Pattern(regexp = "^[a-zA-Z0-9\\s]*$") // Pattern allows only alphanumeric characters and white space
     private String name;
+
+    @NotNull
+    @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date startDate;
 
     @NotNull
     @Size(min = 3, max = 300, message = "Description must be 3 to 300 characters of length!")
@@ -39,6 +46,14 @@ public class Project {
     private List<Collaborator> collaborators = new ArrayList<>();
 
     public Project() {
+    }
+
+    public Date getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
     }
 
     public Long getId() {
@@ -118,4 +133,5 @@ public class Project {
     public int hashCode() {
         return Objects.hash(id, name, description, status, rolesNeeded, collaborators);
     }
+
 }

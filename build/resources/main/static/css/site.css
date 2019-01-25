@@ -456,5 +456,21 @@ form .add-new-collaborator .button {
 
 }
 
+/*  =========================================================================
+     Date Picker styling
+    =========================================================================  */
+
+input.datepicker {
+        margin-bottom: 20px;
+        border: 2px solid #e1e0e0;
+        font-size: 18px;
+        padding: 4px 13px;
+        border-radius: 4px;
+}
+
+input.datepicker:hover {
+        border-color: #747372;
+}
+
 
 
