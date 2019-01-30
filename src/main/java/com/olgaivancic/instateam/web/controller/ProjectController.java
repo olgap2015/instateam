@@ -35,7 +35,9 @@ public class ProjectController {
     // Home page - index of all of the projects
     @RequestMapping("/")
     public String listProjects(Model model) {
-        model.addAttribute("projects", projectService.findAll());
+        List<Project> projects = projectService.findAll();
+        projects.sort(Comparator.comparing(Project::getStartDate).reversed());
+        model.addAttribute("projects", projects);
         model.addAttribute("active", ProjectStatus.ACTIVE.getHexCode());
         model.addAttribute("archived", ProjectStatus.ARCHIVED.getHexCode());
         model.addAttribute("notstarted", ProjectStatus.NOTSTARTED.getHexCode());
